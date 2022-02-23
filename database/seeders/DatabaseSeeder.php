@@ -2,15 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Game;
 use App\Models\GamePlayer;
-use App\Models\MatchResult;
-use App\Models\MatchResultPlayer;
 use App\Models\Player;
-use App\Models\Post;
 use App\Models\Schedule;
-use App\Models\Score;
 use App\Models\Team;
 use App\Models\User;
 use Carbon\Carbon;
@@ -141,19 +136,19 @@ class DatabaseSeeder extends Seeder
         GamePlayer::create([
             "player_id"=>1,
             "game_id"=>1,
-            "goal_minute"=>'65:16'
+            "goal_minute"=>'20:16'
         ]);
 
         GamePlayer::create([
             "player_id"=>1,
             "game_id"=>1,
-            "goal_minute"=>'90:16'
+            "goal_minute"=>'40:16'
         ]);
 
         GamePlayer::create([
             "player_id"=>2,
             "game_id"=>1,
-            "goal_minute"=>'20:16'
+            "goal_minute"=>'80:16'
         ]);
 
        

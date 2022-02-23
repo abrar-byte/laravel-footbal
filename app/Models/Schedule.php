@@ -12,14 +12,14 @@ class Schedule extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded = ['id'];
-    protected $with = ['match','homeTeam', 'awayTeam'];
+    protected $with = ['game','homeTeam', 'awayTeam'];
 
  
 
-    public function match()
+    public function game()
     {
         // satu category bisa untuk banyak post
-        return  $this->belongsTo(MatchResult::class);
+        return  $this->belongsTo(Game::class);
     }
 
     public function homeTeam()

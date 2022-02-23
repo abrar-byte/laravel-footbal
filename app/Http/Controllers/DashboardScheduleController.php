@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Models\Player;
 use App\Models\Schedule;
 use App\Models\Team;
 use Carbon\Carbon;
