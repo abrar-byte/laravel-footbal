@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Player;
 use App\Models\Schedule;
 use App\Models\Team;
@@ -60,8 +61,11 @@ class DashboardScheduleController extends Controller
         // };
 
         // $validatedData['user_id'] = auth()->user()->id;
-     
+        $fakeId= Schedule::latest('id')->first();
 
+
+     
+        Game::create(['schedule_id' => $fakeId->id + 1]);
         Schedule::create($validatedData); 
         return redirect('/dashboard/schedules')->with('success','New Schedule has been added');
     }
@@ -130,9 +134,17 @@ class DashboardScheduleController extends Controller
     //  * @param  \App\Models\Player  $player
     //  * @return \Illuminate\Http\Response
     //  */
-    public function destroy(Schedule $schedule)
-    {
-        Schedule::destroy($schedule->id); 
+    public function destroy($id)
+    { 
+        
+        $schedule= Schedule::findOrFail($id);
+        $gameId = Game::findOrFail($id);
+        $schedule->delete();
+        $gameId->delete();
+
+        // return dd($gameId);
+        // Game::destroy($gameId);
+        // Schedule::destroy($schedule->id); 
         return redirect('/dashboard/schedules')->with('success','Schedule has been deleted!');
     }
 

@@ -14,7 +14,7 @@
   {{-- My Style --}}
   <link rel="stylesheet" href="/style.css">
 
-  <title>{{ $title }} </title>
+  <title>{{ $title ?? '' }} </title>
 </head>
 
 <body>

@@ -20,8 +20,8 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Category</th>
+        <th scope="col">Nama Pemain</th>
+        <th scope="col">Tim</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -36,7 +36,13 @@
           <a href="/dashboard/players/{{ $player->slug }}" class="badge bg-info "><span data-feather="eye"></span></a>
           <a href="/dashboard/players/{{ $player->slug }}/edit" class="badge bg-warning "><span
               data-feather="edit"></span></a>
-          <form action="/dashboard/players/{{ $player->slug }}" method="post" class="d-inline">
+          {{-- <form action="/dashboard/players/{{ $player->slug }}" method="post" class="d-inline">
+            @method('delete')
+            @csrf
+            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
+                data-feather="x-circle"></span></button>
+          </form> --}}
+          <form action="/dashboard/players/{{ $player->id }}" method="post" class="d-inline">
             @method('delete')
             @csrf
             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span

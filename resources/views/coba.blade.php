@@ -22,21 +22,42 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($coba as $a)
-            <tr>
-              {{-- {{ $a->schedule_id }} --}}
-              {{ $a->player }}
 
-              {{-- <td>{{ $a->name }}</td>
+            {{-- {{ $mapping }} --}}
+
+            @foreach($coba as $a)
+
+            <tr>
+              {{-- {{ $a->player }} --}}
+              <td>{{ $a->schedule->homeTeam->name }} - {{ $a->schedule->awayTeam->name }}
+              </td>
+              <p>{{ $a->created_at->diffinMinutes() }}</p>
+              {{-- @dd($a->created_at) --}}
+
+
+
               <td>
                 <ul>
-                  @foreach($a->hadiah as $h)
-                  {{ $h }}
-                  <li> {{ $h->nama_hadiah }} </li>
+                  @foreach($a->player as $key => $h)
+                  {{-- @dd(strip_tags($h->pivot->goal_minute)) --}}
+                  {{-- {!! strip_tags($h->pivot->goal_minute)->diffinMinutes() !!} --}}
+                  {{ $h->pivot->goal_minute }}
+                  {{-- {{ date('H:i:s', strtotime($h->pivot->goal_minute))->diffInMinutes() }} --}}
+                  {{-- <p>{{ $h->pivot->goal_minute->format('i:s') }}</p> --}}
+                  <li> {{ $h->name }} from {{ $h->team->name }} </li>
+
+
                   @endforeach
                 </ul>
+
+
+
+
+              <td class="text-center">{{ $a->player->where('team_id', '=', $a->schedule->home_team_id)->count() }} - {{
+                $a->player->where('team_id', '=', $a->schedule->away_team_id)->count() }}</td>
+
+
               </td>
-              <td class="text-center">{{ $a->hadiah->count() }}</td> --}}
             </tr>
             @endforeach
           </tbody>

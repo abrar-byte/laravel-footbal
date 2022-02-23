@@ -7,22 +7,11 @@
           Dashboard
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/players*') ? 'active' : '' }}" href="/dashboard/players">
-          <span data-feather="file-text"></span>
-          Players
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/schedules*') ? 'active' : '' }}" href="/dashboard/schedules">
-          <span data-feather="file-text"></span>
-          Schedules
-        </a>
-      </li>
+
 
       <li class="nav-item">
         <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="/">
-          <span data-feather="file-text"></span>
+          <span data-feather="skip-back"></span>
           Back to Home
         </a>
       </li>
@@ -39,7 +28,26 @@
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/teams*') ? 'active' : '' }}" href="/dashboard/teams">
           <span data-feather="grid"></span>
-          Post teams
+          Teams
+        </a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/players*') ? 'active' : '' }}" href="/dashboard/players">
+          <span data-feather="users"></span>
+          Players
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/schedules*') ? 'active' : '' }}" href="/dashboard/schedules">
+          <span data-feather="calendar"></span>
+          Schedules
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/games*') ? 'active' : '' }}" href="/dashboard/games">
+          <span data-feather="play"></span>
+          Match Results
         </a>
 
       </li>

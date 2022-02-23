@@ -26,16 +26,18 @@ class CreatePlayersTable extends Migration
             // buat untuk gambar, cukup text krn filenya disimpen di directory, dibuat boleh kosong
             // $table->string('image')->nullable();
             // isian tulisannya pake text biar  bisa banyak
-            $table->string('height');
-            $table->string('weight');
+            $table->integer('height');
+            $table->integer('weight');
             $table->string('position');
-            $table->string('number');
+            $table->integer('number');
 
 
             // tipe data timestamp dan boleh kosong
             // $table->timestamp('published_at')->nullable();
             // method untuk created_at dan published_at
             $table->timestamps();
+            $table->softDeletes();
+
 
         });
     }

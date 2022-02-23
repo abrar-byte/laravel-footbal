@@ -8,24 +8,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ ($active === " home") ? 'active' : '' }}" href="/">Home</a>
+          <a class="nav-link {{ ($active ===  'home') ? 'active' : '' }}" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === " about") ? 'active' : '' }}" href="/about">About</a>
+          <a class="nav-link {{ ($active === 'about') ? 'active' : '' }}" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === " teams") ? 'active' : '' }}" href="/teams">Data Tim</a>
-        </li>
-        <li class="nav-item">
-        <li class="nav-item">
-          <a class="nav-link {{ ($active === " schedules") ? 'active' : '' }}" href="/schedules">Jadwal Pertandingan</a>
+          <a class="nav-link {{ ($active === 'teams') ? 'active' : '' }}" href="/teams">Data Tim</a>
         </li>
         <li class="nav-item">
         <li class="nav-item">
-          <a class="nav-link {{ ($active === " posts") ? 'active' : '' }}" href="/blog">Hasil Pertandingan</a>
+          <a class="nav-link {{ ($active ===  'schedules') ? 'active' : '' }}" href="/schedules">Jadwal Pertandingan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === " players") ? 'active' : '' }}" href="/players">Players</a>
+        <li class="nav-item">
+          <a class="nav-link {{ ($active ===  'games') ? 'active' : '' }}" href="/games">Hasil Pertandingan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ ($active ===  'players') ? 'active' : '' }}" href="/players">Pemain</a>
         </li>
 
       </ul>

@@ -32,7 +32,7 @@
             <td>{{ $schedule->tanggal }}</td>
             <td>{{ $schedule->waktu }}</td>
             <td>
-              <a href="/matchs?schedule={{ $schedule->id }}" class="text-white">TAP
+              <a href="/game?schedule={{ $schedule->id }}" class="text-white">TAP
               </a>
             </td>
           </tr>

@@ -12,7 +12,7 @@
     @method('put')
     @csrf
     <div class="mb-3">
-      <label for="name" class="form-label">name</label>
+      <label for="name" class="form-label">Name</label>
       <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required
         autofocus value="{{ old('name', $team->name) }}">
       @error('name')
@@ -34,6 +34,27 @@
 
       @enderror
     </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Post Image</label>
+      @if ($team->image)
+      <img src="{{ asset('storage/' . $team->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+
+      @else
+      <img class="img-preview img-fluid mb-3 col-sm-5">
+
+      @endif
+      <img class="img-preview img-fluid mb-3 col-sm-5">
+      <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
+        onchange="previewImage()">
+      @error('image')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+
+      @enderror
+    </div>
+
     <div class="mb-3">
       <label for="year" class="form-label">year</label>
       <input type="text" class="form-control @error('year') is-invalid @enderror" id="year" name="year" required

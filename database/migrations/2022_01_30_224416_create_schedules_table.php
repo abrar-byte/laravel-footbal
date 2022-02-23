@@ -19,15 +19,11 @@ class CreateSchedulesTable extends Migration
             $table->foreign('home_team_id')->references('id')->on('teams');
             $table->unsignedBigInteger('away_team_id');
             $table->foreign('away_team_id')->references('id')->on('teams');
-            $table->date('tanggal');
-
-            
+            $table->date('tanggal');            
             $table->time('waktu');
-
-
-
-
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

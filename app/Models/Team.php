@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Expr\FuncCall;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 class Team extends Model
 {
     use HasFactory;
     use Sluggable;
+    use SoftDeletes;
 
     protected $guarded = ['id'];
     // protected $with = ['schedule'];

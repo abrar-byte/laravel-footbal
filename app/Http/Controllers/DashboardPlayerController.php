@@ -18,7 +18,7 @@ class DashboardPlayerController extends Controller
     public function index()
     {
         return view('dashboard.players.index',[
-            'players' => Player::where('user_id',auth()->user()->id)->get()
+            'players' => Player::all()
         ]);
     }
 
@@ -40,6 +40,8 @@ class DashboardPlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -48,18 +50,23 @@ class DashboardPlayerController extends Controller
             'team_id' => 'required',
             // 'image' => 'image|file|max:1024
             // ',
-            'height' => 'required|max:100',
-            'weight' => 'required|max:100',
+            'height' => 'required|numeric|max:200',
+            'weight' => 'required|numeric|max:200',
             'position' => 'required|max:100',
-            'number' => 'required|max:100',
+            'number' => 'required|numeric|max:100',
 
         ]);
+            
+        //  return response()->json($res);
+        // if($validatedData['number'] === $validatedData['away_team_id']){
+        //     return abort(403,'Team tidak boleh sama');
+        // }
 
         // if($request->file('image')){
         //     $validatedData['image'] = $request->file('image')->store('post-images');
         // };
 
-        $validatedData['user_id'] = auth()->user()->id;
+        // $validatedData['user_id'] = auth()->user()->id;
      
 
         Player::create($validatedData); 
@@ -124,7 +131,7 @@ class DashboardPlayerController extends Controller
         $validatedData = $request->validate($rules);
 
       
-        $validatedData['user_id'] = auth()->user()->id;
+        // $validatedData['user_id'] = auth()->user()->id;
       
         Player::where('id', $player->id)
         ->update($validatedData); 
@@ -137,9 +144,15 @@ class DashboardPlayerController extends Controller
      * @param  \App\Models\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Player $player)
+    public function destroy($id)
     {
-        Player::destroy($player->id); 
+    
+        $player= Player::findOrFail($id);
+        $player->delete();
+        
+        // return redirect('/');
+        // $player->id->delete();
+        // Player::destroy($player->id); 
         return redirect('/dashboard/players')->with('success','Player has been deleted!');
     }
 

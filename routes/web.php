@@ -6,8 +6,10 @@
 // use App\Models\Post;
 
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminGameController;
 use App\Http\Controllers\AdminTeamController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardGameController;
 use App\Http\Controllers\DashboardMatchController;
 use App\Http\Controllers\DashboardPlayerController;
 use App\Http\Controllers\DashboardScheduleController;
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardMatchResultController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\MatchResultController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\RegisterController;
@@ -67,7 +70,7 @@ Route::get('/blog',[PostController::class, 'index']);
 
 Route::get('/players',[PlayerController::class, 'index']); 
 Route::get('/matchs',[MatchResultController::class, 'index']); 
-Route::get('/coba',[ScoreController::class, 'index']); 
+Route::get('/games',[GameController::class, 'index']); 
 
 
 
@@ -146,16 +149,27 @@ Route::get('/dashboard', function() {
    return view('dashboard.index'); 
 })->middleware('auth');
 
-Route::resource('/dashboard/players', DashboardPlayerController::class)->middleware('auth');
+Route::resource('/dashboard/players', DashboardPlayerController::class)->middleware('admin');
+// Route::delete('/dashboard/players/{id}/destroy', [DashboardPlayerController::class, 'destroy'])->name('destroy');
+
 
 // dikasih auth supaya tidak bisa diases kalau blm login
 // Route::resource('/dashboard/teams', AdminTeamController::class)->except('show')->middleware('admin');
 
 Route::resource('/dashboard/teams', AdminTeamController::class)->middleware('admin');
+// Route::delete('/dashboard/teams/{id}/destroy', [AdminTeamController::class, 'destroy'])->name('destroy');
+// Route::delete('/dashboard/players/{slug}/destroy', [DashboardPlayerController::class, 'destroy'])->name('destroy');
+
+
+
 Route::resource('/dashboard/schedules', DashboardScheduleController::class)->middleware('admin');
+// Route::delete('/dashboard/schedules/{id}/destroy', [DashboardScheduleController::class, 'destroy'])->name('destroy');
 
 
-Route::resource('/dashboard/matchs', DashboardMatchController::class)->middleware('admin');
+
+// Route::resource('/dashboard/games', DashboardGameController::class)->middleware('admin');
+Route::resource('/dashboard/games', AdminGameController::class)->middleware('admin');
+
 
 
 
@@ -163,7 +177,7 @@ Route::resource('/dashboard/matchs', DashboardMatchController::class)->middlewar
 Route::get('/dashboard/team/checkSlug',[AdminTeamController::class,'checkSlug'])->middleware('admin');
 
 
-Route::get('/dashboard/player/checkSlug',[DashboardPlayerController::class,'checkSlug'])->middleware('auth');
+Route::get('/dashboard/player/checkSlug',[DashboardPlayerController::class,'checkSlug'])->middleware('admin');
 
 
 

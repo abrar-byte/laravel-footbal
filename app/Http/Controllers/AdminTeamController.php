@@ -110,12 +110,11 @@ class AdminTeamController extends Controller
     {
         $rules =([
             'name' => 'required|max:255',
+            
             'image' => 'image|file|max:1024',
-
             'year' => 'required|max:2022',
             'address' => 'required|max:100',
             'city' => 'required|max:100',
-            // 'number' => 'required|max:100',
 
         ]);
 
@@ -148,15 +147,18 @@ class AdminTeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy($id)
     {
-        Team::destroy($team->id); 
+        $team= Team::findOrFail($id);
+        $team->delete();
+        // Team::destroy($team->id); 
         return redirect('/dashboard/teams')->with('success','Team has been deleted!');
     }
 
     public function checkSlug(Request $request)
     {
     //    buat slug otomatis
+    
 
     // $slug = SlugService::createSlug(Post::class, 'slug', 'My First Post');
         $slug = SlugService::createSlug(Team::class,'slug',$request->name);
